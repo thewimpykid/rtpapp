@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.R.T.E.K | Current</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'food/style.css' %}"/>
+</head>
+<body>
+    <div class="nav">
+        <h3>A.R.T.E.K</h3>
+    </div>
+    <div class="body">
+        <div class="button-container">
+            <button onclick="location.href += 'past-24-hours'">Past 12 Hours</button>
+            <button onclick="location.href = '/home'">Current</button>
+        </div>
+        <h1>{{USDPM}}</h1>
+        <h2 class="h2">cents per kilowatt hour</h2>
+        {{chart | safe}}
+        <h6>*All of the below values are if the appliance is turned on for one WHOLE hour.</h6>
+        <div class="appliances">
+            <div class="appliance">
+                <h5>Fridge</h5>
+                <h5>${{USDPMF}} per hour</h5>
+            </div>
+            <div class="appliance-white">
+                <h5>Dishwasher</h5>
+                <h5>${{USDPMW}} per hour</h5>
+            </div>
+            <div class="appliance">
+                <h5>Washing Machine</h5>
+                <h5>${{USDPMC}} per hour</h5>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
+
