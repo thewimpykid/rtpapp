@@ -7,15 +7,17 @@ from django.template import loader
 from datetime import datetime
 import plotly.express as px
 import pandas as pd
-
+import pytz
 
 
 
 # Create your views here.
 def index(request):
+    newYorkTz = pytz.timezone("America/New_York") 
+    timeInNewYork = datetime.now(newYorkTz)
     now = datetime.now()
-    current_time_hours = int(now.strftime("%H"))
-    current_time_minutes = int(now.strftime("%M"))
+    current_time_hours = int(timeInNewYork.strftime("%H"))
+    current_time_minutes = int(timeInNewYork.strftime("%M"))
     h = current_time_hours
     m = current_time_minutes
     times = []
