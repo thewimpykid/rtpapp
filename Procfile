@@ -1,1 +1,1 @@
-web gunicorn RTPApp.wsgi:application --log-file -
+web: gunicorn app.wsgi
