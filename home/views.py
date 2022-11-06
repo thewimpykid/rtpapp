@@ -104,9 +104,11 @@ def past(request):
     reqcurrent_json = reqcurrent.json()
     currentPrice = reqcurrent_json[0]["price"]
     b=0
+    newYorkTz = pytz.timezone("America/New_York") 
+    timeInNewYork = datetime.now(newYorkTz)
     now = datetime.now()
-    current_time_hours = int(now.strftime("%H"))
-    current_time_minutes = int(now.strftime("%M"))
+    current_time_hours = int(timeInNewYork.strftime("%H"))
+    current_time_minutes = int(timeInNewYork.strftime("%M"))
     h = current_time_hours
     m = current_time_minutes
     
