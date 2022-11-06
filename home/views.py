@@ -153,6 +153,10 @@ def past(request):
             hours.append(f'{current_time_hours - 1}: 0{current_time_minutes}')
             hourlyPrices.append(fiveminfeed_dict[i*12])
             current_time_hours -= 1
+        if int(current_time_hours) < 0:
+            hours.append(f'{11}: 0{current_time_minutes}')
+            hourlyPrices.append(fiveminfeed_dict[i*12])
+            current_time_hours = 11
 
         else:
             hours.append(f'{current_time_hours - 1}: {current_time_minutes}')
