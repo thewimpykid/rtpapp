@@ -166,7 +166,7 @@ def past(request):
     fig = px.bar(x=new_times,y=fiveminfeed_dict_recent, labels={'x':"Time", 'y':"Cents Per Kwh"}, width=350, height=300)
     chart = fig.to_html()
 
-    fig2 = px.line(x=hours[::-1],y=hourlyPrices[::-1], labels={'x':"Time", 'y':"Cents Per Kwh"}, width=350, height=300)
+    fig2 = px.bar(x=hours[::-1],y=hourlyPrices[::-1], labels={'x':"Time", 'y':"Cents Per Kwh"}, width=350, height=300)
     chart2 = fig2.to_html()
 
 
