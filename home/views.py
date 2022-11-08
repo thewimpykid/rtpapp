@@ -84,7 +84,7 @@ def index(request):
     template = loader.get_template('food/index.html')
     USDPMF = round(float(currentPrice) * 0.16, 2)
     USDPMW = round(float(currentPrice) * 1.2, 2)
-    USDPMC = round(float(currentPrice) * 4.5, 2)
+    USDPMC = round(float(currentPrice) * 0.90, 2)
 
 
   
