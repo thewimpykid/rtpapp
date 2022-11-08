@@ -51,9 +51,7 @@ def index(request):
             times.append(f'{h}:{m}')
             m-=5
     new_times = times[::-1]
-    fig.update_xaxes(
-    dtick="M1",
-    tickformat="%b\n%Y")
+
     fig = px.bar(x=new_times,y=fiveminfeed_dict_recent, labels={'x':"Time", 'y':"Cents Per Kwh"}, width=350, height=300)
     chart = fig.to_html()
     # initialize var
@@ -164,14 +162,10 @@ def past(request):
             hours.append(f'{current_time_hours}: {current_time_minutes}')
             hourlyPrices.append(fiveminfeed_dict[i*12])
             current_time_hours -= 1
-    fig.update_xaxes(
-    dtick="M1",
-    tickformat="%b\n%Y")
+    
     fig = px.bar(x=new_times,y=fiveminfeed_dict_recent, labels={'x':"Time", 'y':"Cents Per Kwh"}, width=350, height=300)
     chart = fig.to_html()
-    fig2.update_xaxes(
-    dtick="M1",
-    tickformat="%b\n%Y")
+
     fig2 = px.bar(x=hours[::-1],y=hourlyPrices[::-1], labels={'x':"Time", 'y':"Cents Per Kwh"}, width=350, height=300)
     chart2 = fig2.to_html()
 
