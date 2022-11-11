@@ -82,9 +82,9 @@ def index(request):
         rating = round(rating * (float(currentPrice)/avg_past24hours), 1)
 
     template = loader.get_template('food/index.html')
-    USDPMF = int(round(float(currentPrice) * 2.5, 0) * 10)
-    USDPMW = int(round(float(currentPrice) * 1.2, 0) * 10)
-    USDPMC = int(round(float(currentPrice) * 0.90, 0) * 10)
+    USDPMF = int(round(float(currentPrice) * 2.5, 0))
+    USDPMW = int(round(float(currentPrice) * 1.2, 0))
+    USDPMC = int(round(float(currentPrice) * 0.90, 0))
 
 
   
