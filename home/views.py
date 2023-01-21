@@ -15,7 +15,6 @@ from django.views.decorators.csrf import csrf_protect
 
 
 @csrf_protect
-# Create your views here.
 def index(request):
     demand = 0
     if request.method == "POST":
