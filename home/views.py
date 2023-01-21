@@ -96,7 +96,7 @@ def index(request):
     }
     print('6')
  
-    return render(request, template, context)
+    return HttpResponse(template.render(context, request))
 
 def past(request):
     reqcurrent = requests.get('https://hourlypricing.comed.com/api?type=currenthouraverage')
