@@ -11,9 +11,10 @@ import pytz
 from .RTPfunctions import getCurrentPrice 
 import pickle
 import numpy as np
+from django.views.decorators.csrf import csrf_protect
 
 
-
+@csrf_protect
 # Create your views here.
 def index(request):
     demand = 0
@@ -95,7 +96,7 @@ def index(request):
     }
     print('6')
  
-    return HttpResponse(template.render(context, request))
+    return render(request, template, context)
 
 def past(request):
     reqcurrent = requests.get('https://hourlypricing.comed.com/api?type=currenthouraverage')
