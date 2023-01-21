@@ -13,8 +13,9 @@
         <h3>A.R.T.E.K</h3>
     </div>
     <div class="body">
+        {% csrf_token %} 
         <form action="http://makeminds.herokuapp.com/home/" method="POST">
-            {% csrf_token %} 
+  
             <label for="states">Choose a state:</label>
             <select name="states">
                 <div class="dropdown-content">
@@ -25,7 +26,6 @@
                     <option value="America/New_York FLA Florida">Florida</option>
                     <option value="America/New_York TEX Texas">Texas</option>
                 </div>
-                <!-- <option value="reeses">Reeses</option> -->
             </select>
             <input type="submit" class="submit">
         </form>
