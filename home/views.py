@@ -28,17 +28,14 @@ def index(request):
     
     print('1')
     time = pytz.timezone("utc") 
-    timeInNewYork = datetime.now(time)
     
     # initialize var
-    total = 0
-    i=0
+
     # make requests
     reqFiveMinuteFeed = requests.get('https://hourlypricing.comed.com/api?type=5minutefeed')
     reqcurrent = requests.get('https://hourlypricing.comed.com/api?type=currenthouraverage')
     # turn requests into json
-    reqcurrent_json = reqcurrent.json()
-    reqFiveMinuteFeed_json = reqFiveMinuteFeed.json()
+
     # get current price
     print('3')
     timezone = pytz.timezone('UTC') 
@@ -48,9 +45,10 @@ def index(request):
     current_time_days = (int(time_in_state.strftime("%d")) + 1)
     current_time_hours = str(int(time_in_state.strftime("%H")))
     time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+    past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
     print(time)
     print('4')
-    eia_api = requests.get(f'https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[type][]=D&facets[type][]=DF&facets[respondent][]={state_eia}&start=2022-01-16T00&end={time}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
+    eia_api = requests.get(f'https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[type][]=D&facets[type][]=DF&facets[respondent][]={state_eia}&start={past_time}&end={time}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
     print('request done')
     eia_api_json = eia_api.json()
     response = eia_api_json['response']['data']
