@@ -8,7 +8,6 @@ from datetime import datetime
 import plotly.express as px
 import pandas as pd
 import pytz
-from .RTPfunctions import getCurrentPrice 
 import pickle
 import numpy as np
 from django.views.decorators.csrf import csrf_exempt
