@@ -21,6 +21,8 @@ def index(request):
         state = things[2]
         if state == "NewJersey":
             state = "New Jersey"
+        if state == "NewYork":
+            state = "New York"
     else:
         state_eia = "NY"
         state = "New York"
