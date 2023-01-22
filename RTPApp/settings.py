@@ -128,4 +128,4 @@ django_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_COOKIE_DOMAIN = '.herokuapp.com'
+CSRF_COOKIE_DOMAIN = '.herokuapp.com/home'
