@@ -27,7 +27,52 @@
                     <option value="America/New_York TEX Texas">Texas</option>
                 </div>
             </select>
-            <input type="submit" class="submit">
+            <input type="subm{% load static %}
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>A.R.T.E.K | Past 12 Hours</title>
+                <link rel="stylesheet" type="text/css" href="{% static 'food/past.css' %}"/>
+            </head>
+            <body>
+                <div class="nav">
+                    <h3>A.R.T.E.K</h3>
+                </div>
+                <div class="body">
+                    <form action="http://localhost:8000/home/past-24-hours/" method="POST">
+                        {% csrf_token %} 
+                        <label for="states">Choose a state:</label>
+                        <select name="states">
+                            <div class="dropdown-content">
+                                <option value="America/New_York NY NewJersey">New Jersey</option>
+                                <option value="America/Los_Angeles CAL California">California</option>
+                                <option value="America/New_York NY NewYork">New York</option>
+                                <option value="America/New_York TEN Tennessee">Tennessee</option>
+                                <option value="America/New_York FLA Florida">Florida</option>
+                                <option value="America/New_York TEX Texas">Texas</option>
+                            </div>
+                        </select>
+                        <input type="submit" class="submit">
+                    </form>
+                    <div class="button-container">
+                        <button class="button" onclick="location.href = '/home/past-24-hours'">Past 12 Hours</button>
+                        <button class="button"onclick="location.href = '/home'">Current</button>
+                        
+                    </div>
+                    <h1 class="state">{{state}}</h3>
+                    <div class="chart">
+                        {{ chart | safe }}
+                    </div>
+                    
+            
+                    
+                    
+                <div>
+            </body>
+            </html>it" class="submit">
         </form>
         <div class="button-container">
             <button onclick="location.href += 'past-24-hours'">Past 12 Hours</button>
