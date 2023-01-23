@@ -173,6 +173,12 @@ option {
     font-weight: 600;
     margin-bottom: -30px;
     color: rgb(50, 50, 50);
+    z-index: 100;
+}
+
+.chart {
+    width: 75%;
+
 }
 
 

@@ -185,7 +185,7 @@ def next(request):
         test = np.array([demand]).reshape((-1, 1))
         price = model.predict(test)
         price_round = round(price[0], 1)
-        price_list.append(demand)
+        price_list.append(price_round)
 
 
     print(f'{state}: {price_list}')
