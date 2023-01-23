@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.R.T.E.K | Current</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'food/style.css' %}"/>
+    <title>A.R.T.E.K | Past 12 Hours</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'food/past.css' %}"/>
 </head>
 <body>
     <div class="nav">
         <h3>A.R.T.E.K</h3>
     </div>
     <div class="body">
-        
-        <form action="http://makeminds.herokuapp.com/home/" method="POST">
+        <form action="http://localhost:8000/home/next-12-hours/" method="POST">
             {% csrf_token %} 
             <label for="states">Choose a state:</label>
             <select name="states">
@@ -30,31 +29,19 @@
             <input type="submit" class="submit">
         </form>
         <div class="button-container">
-            <button onclick="location.href += 'past-12-hours'">Past 12 Hours</button>
-            <button onclick="location.href = '/home'">Current</button>
+            <button class="button" onclick="location.href = '/home/past-12-hours'">Past 12 Hours</button>
+            <button class="button"onclick="location.href = '/home'">Current</button>
             <button class="button" onclick="location.href = '/home/next-12-hours'">Next 12 Hours</button>
+            
         </div>
         <h1 class="state">{{state}}</h3>
-        <h1>{{USDPM}}</h1>
-        <h2 class="h2">cents per kilowatt hour</h2>
-        <h6>*All of the below values are if the appliance is turned on for one WHOLE hour.</h6>
-        <div class="appliances">
-            <div class="appliance">
-                <h5>Dishwasher</h5>
-                <h5>{{USDPMW}}¢ per hour</h5>
-            </div>
-            <div class="appliance-white">
-                <h5>Dryer</h5>
-                <h5>{{USDPMF}}¢ per hour</h5>
-            </div>
-            <div class="appliance">
-                <h5>Washer</h5>
-                <h5>{{USDPMC}}¢ per hour</h5>
-            </div>
+        <div class="chart">
+            {{ chart | safe }}
         </div>
-    </div>
-    
-    
+        
+
+        
+        
+    <div>
 </body>
 </html>
-

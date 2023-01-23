@@ -169,18 +169,11 @@ option {
    
 }
 .state {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: -30px;
     color: rgb(50, 50, 50);
-    z-index: 100;
 }
-
-.chart {
-    width: 75%;
-
-}
-
 
 
 

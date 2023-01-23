@@ -147,8 +147,62 @@ def past(request):
 
     return HttpResponse(template.render(context, request))
 
+@csrf_exempt
 def next(request):
-    return HttpResponse('hi')
+    demand = 0
+    if request.method == "POST":
+        things = request.POST["states"].split(" ")
+        state_eia = things[1]
+        state = things[2]
+        if state == "NewJersey":
+            state = "New Jersey"
+    else:
+        state_eia = "NY"
+        state = "New York"
+
+    timezone = pytz.timezone('UTC') 
+    time_in_state = datetime.now(timezone)
+    current_time_years = time_in_state.strftime("%Y")
+    current_time_months = time_in_state.strftime("%m")
+    current_time_days = (int(time_in_state.strftime("%d")) + 1)
+    current_time_hours = str(int(time_in_state.strftime("%H")))
+    time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+    past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+
+    print(time)
+    print('4')
+    eia_api = requests.get(f'https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[type][]=DF&facets[respondent][]={state_eia}&start={past_time}&end={time}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
+    # eia_api = requests.get('https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[respondent][]=FLA&facets[type][]=D&facets[type][]=DF&end=2023-01-25T00&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
+    template = loader.get_template('food/next-24-hours.html')
+
+    eia_api_json = eia_api.json()
+    response = eia_api_json['response']['data']
+    price_list = []
+    for i in range(12):
+        demand = response[i]['value']
+        with open('./home/model_pickle', 'rb') as f:
+            model = pickle.load(f)
+        test = np.array([demand]).reshape((-1, 1))
+        price = model.predict(test)
+        price_round = round(price[0], 1)
+        price_list.append(demand)
+
+
+    print(f'{state}: {price_list}')
+    fig = px.line(
+        x=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y=price_list,
+        labels= {'x': '', 'y': 'Price'}
+    )
+
+    fig.update_xaxes(showticklabels=False, )
+
+    chart = fig.to_html()
+
+
+    context = {"state": state, "chart": chart}    
+
+    return HttpResponse(template.render(context, request))
 
 
 
