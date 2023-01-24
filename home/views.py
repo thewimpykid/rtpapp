@@ -12,6 +12,7 @@ from .RTPfunctions import getCurrentPrice
 import pickle
 import numpy as np
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 @csrf_exempt
 def index(request):
