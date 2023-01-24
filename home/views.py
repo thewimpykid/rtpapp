@@ -114,6 +114,8 @@ def past(request):
     current_time_months = time_in_state.strftime("%m")
     current_time_days = (int(time_in_state.strftime("%d")) + 1)
     current_time_hours = str(int(time_in_state.strftime("%H")))
+    if int(current_time_hours) < 10:
+        current_time_hours = f'0{current_time_hours}'
     time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
     past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
     print(time)
@@ -167,6 +169,8 @@ def next(request):
     current_time_months = time_in_state.strftime("%m")
     current_time_days = (int(time_in_state.strftime("%d")) + 1)
     current_time_hours = str(int(time_in_state.strftime("%H")))
+    if int(current_time_hours) < 10:
+        current_time_hours = f'0{current_time_hours}'
     time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
     past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
 
