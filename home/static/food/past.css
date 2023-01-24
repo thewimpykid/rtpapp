@@ -21,6 +21,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;   
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 h1 {
@@ -109,20 +112,7 @@ h6 {
     margin-top: -5px;
 }
 
-@media screen and (max-width: 480px) {
-    .appliance {
-        width: 300px;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-    .appliance-white {
-        width: 300px;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-}
+
 
 form {
     margin-top: 30px;
@@ -169,7 +159,7 @@ option {
    
 }
 .state {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
     margin-bottom: -30px;
     color: rgb(50, 50, 50);
@@ -180,6 +170,66 @@ option {
     width: 75%;
 
 }
+
+@media screen and (min-width: 480px) {
+    .mobile-nav {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .appliance {
+        width: 300px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .appliance-white {
+        width: 300px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .button-container {
+        display: none;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .submit {
+        margin-top: 30px;
+    }
+
+    .mobile-nav {
+        background-color: rgb(36, 36, 36);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;   
+        position: sticky;
+        bottom: 0px;
+        border-radius: 5px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        width: 100%
+
+
+    }
+
+    a {
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: white;
+        margin: 10px;
+        padding: 10px;
+    }
+}
+
+
+
+
 
 
 

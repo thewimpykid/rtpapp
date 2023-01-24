@@ -16,17 +16,19 @@
         
         <form action="http://makeminds.herokuapp.com/home/" method="POST">
             {% csrf_token %} 
-            <label for="states">Choose a state:</label>
-            <select name="states">
-                <div class="dropdown-content">
-                    <option value="America/New_York NY NewJersey">New Jersey</option>
-                    <option value="America/Los_Angeles CAL California">California</option>
-                    <option value="America/New_York NY NewYork">New York</option>
-                    <option value="America/New_York TEN Tennessee">Tennessee</option>
-                    <option value="America/New_York FLA Florida">Florida</option>
-                    <option value="America/New_York TEX Texas">Texas</option>
-                </div>
-            </select>
+            <div>
+                <label for="states">Choose a state:</label>
+                <select name="states">
+                    <div class="dropdown-content">
+                        <option value="America/New_York NY NewJersey">New Jersey</option>
+                        <option value="America/Los_Angeles CAL California">California</option>
+                        <option value="America/New_York NY NewYork">New York</option>
+                        <option value="America/New_York TEN Tennessee">Tennessee</option>
+                        <option value="America/New_York FLA Florida">Florida</option>
+                        <option value="America/New_York TEX Texas">Texas</option>
+                    </div>
+                </select>
+            </div>
             <input type="submit" class="submit">
         </form>
         <div class="button-container">
@@ -52,6 +54,11 @@
                 <h5>{{USDPMC}}¢ per hour</h5>
             </div>
         </div>
+    </div>
+    <div class="mobile-nav">
+        <a href="https://makeminds.herokuapp.com/home/past-12-hours">Past 12 Hours</a>
+        <a href="https://makeminds.herokuapp.com/home">Current</a>
+        <a href="https://makeminds.herokuapp.com/home/next-12-hours">Next 12 Hours</a>
     </div>
     
     
