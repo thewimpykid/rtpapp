@@ -191,6 +191,7 @@ def next(request):
         price = model.predict(test)
         price_round = round(price[0], 1)
         price_list.append(price_round)
+        price_list.reverse()
 
 
     print(f'{state}: {price_list}')
