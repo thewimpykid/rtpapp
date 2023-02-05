@@ -49,11 +49,11 @@ def index(request):
             current_time_hours = f'0{current_time_hours}'
             time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
             past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
-    if int(current_time_days) < 10:
-            current_time_dayss = current_time_days
-            current_time_days = f'0{current_time_days}'
-            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-            past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
+    # if int(current_time_days) < 10:
+    #         current_time_dayss = current_time_days
+    #         current_time_days = f'0{current_time_days}'
+    #         time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+    #         past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
     eia_api = requests.get(f'https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[type][]=D&facets[type][]=DF&facets[respondent][]={state_eia}&start={past_time}&end={time}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
     print(eia_api)
     eia_api_json = eia_api.json()
@@ -126,11 +126,11 @@ def past(request):
             current_time_hours = f'0{current_time_hours}'
             time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
             past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
-    if int(current_time_days) < 10:
-            current_time_dayss = current_time_days
-            current_time_days = f'0{current_time_days}'
-            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-            past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
+    # if int(current_time_days) < 10:
+    #         current_time_dayss = current_time_days
+    #         current_time_days = f'0{current_time_days}'
+    #         time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+    #         past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
     eia_api = requests.get(f'https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[type][]=D&facets[respondent][]={state_eia}&start={past_time}&end={time}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
     eia_api_json = eia_api.json()
     response = eia_api_json['response']['data']
@@ -187,11 +187,11 @@ def next(request):
             current_time_hours = f'0{current_time_hours}'
             time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
             past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
-    if int(current_time_days) < 10:
-            current_time_dayss = current_time_days
-            current_time_days = f'0{current_time_days}'
-            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-            past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
+    # if int(current_time_days) < 10:
+    #         current_time_dayss = current_time_days
+    #         current_time_days = f'0{current_time_days}'
+    #         time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+    #         past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
 
     print(time)
     print('4')
