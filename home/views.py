@@ -8,6 +8,7 @@ from datetime import datetime
 import plotly.express as px
 import pandas as pd
 import pytz
+from .RTPfunctions import getCurrentPrice 
 import pickle
 import numpy as np
 from django.views.decorators.csrf import csrf_exempt
@@ -31,8 +32,7 @@ def index(request):
     # initialize var
 
     # make requests
-    reqFiveMinuteFeed = requests.get('https://hourlypricing.comed.com/api?type=5minutefeed')
-    reqcurrent = requests.get('https://hourlypricing.comed.com/api?type=currenthouraverage')
+
     # turn requests into json
 
     # get current price
@@ -41,16 +41,22 @@ def index(request):
     time_in_state = datetime.now(timezone)
     current_time_years = time_in_state.strftime("%Y")
     current_time_months = time_in_state.strftime("%m")
-    current_time_days = (int(time_in_state.strftime("%d")) + 1)
-    current_time_hours = str(int(time_in_state.strftime("%H")))
-    if int(current_time_hours) < 10:
-        current_time_hours = f'0{current_time_hours}'
+    current_time_days = str(int(time_in_state.strftime("%d")) + 10)
+    current_time_hours = int(str(time_in_state.strftime("%H")))
     time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-    past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
-    print(time)
-    print('4')
+    past_time = f'{current_time_years}-{current_time_months}-{int(int(current_time_days) - 3)}T{current_time_hours}'
+    print(current_time_hours)
+    if int(current_time_hours) < 10:
+            current_time_hours = f'0{current_time_hours}'
+            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+    if int(current_time_days) < 10:
+            current_time_dayss = current_time_days
+            current_time_days = f'0{current_time_days}'
+            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
     eia_api = requests.get(f'https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[type][]=D&facets[type][]=DF&facets[respondent][]={state_eia}&start={past_time}&end={time}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
-    print('request done')
+    print(eia_api)
     eia_api_json = eia_api.json()
     response = eia_api_json['response']['data']
     print(eia_api)
@@ -112,14 +118,20 @@ def past(request):
     time_in_state = datetime.now(timezone)
     current_time_years = time_in_state.strftime("%Y")
     current_time_months = time_in_state.strftime("%m")
-    current_time_days = (int(time_in_state.strftime("%d")) + 1)
-    current_time_hours = str(int(time_in_state.strftime("%H")))
-    if int(current_time_hours) < 10:
-        current_time_hours = f'0{current_time_hours}'
+    current_time_days = str(int(time_in_state.strftime("%d")) + 10)
+    current_time_hours = int(str(time_in_state.strftime("%H")))
     time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-    past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
-    print(time)
-    print('4')
+    past_time = f'{current_time_years}-{current_time_months}-{int(int(current_time_days) - 3)}T{current_time_hours}'
+    print(current_time_hours)
+    if int(current_time_hours) < 10:
+            current_time_hours = f'0{current_time_hours}'
+            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+    if int(current_time_days) < 10:
+            current_time_dayss = current_time_days
+            current_time_days = f'0{current_time_days}'
+            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
     eia_api = requests.get(f'https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data[0]=value&facets[type][]=D&facets[respondent][]={state_eia}&start={past_time}&end={time}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=S0WdpfjSTJbuTuahlzvRmS8ZvW2aCoMktJvmL4E4')
     eia_api_json = eia_api.json()
     response = eia_api_json['response']['data']
@@ -167,12 +179,20 @@ def next(request):
     time_in_state = datetime.now(timezone)
     current_time_years = time_in_state.strftime("%Y")
     current_time_months = time_in_state.strftime("%m")
-    current_time_days = (int(time_in_state.strftime("%d")) + 1)
-    current_time_hours = str(int(time_in_state.strftime("%H")))
-    if int(current_time_hours) < 10:
-        current_time_hours = f'0{current_time_hours}'
+    current_time_days = str(int(time_in_state.strftime("%d")) + 10)
+    current_time_hours = int(str(time_in_state.strftime("%H")))
     time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-    past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+    past_time = f'{current_time_years}-{current_time_months}-{int(int(current_time_days) - 3)}T{current_time_hours}'
+    print(current_time_hours)
+    if int(current_time_hours) < 10:
+            current_time_hours = f'0{current_time_hours}'
+            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+    if int(current_time_days) < 10:
+            current_time_dayss = current_time_days
+            current_time_days = f'0{current_time_days}'
+            time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-0{int(int(current_time_dayss) - 3)}T{current_time_hours}'
 
     print(time)
     print('4')
@@ -190,8 +210,7 @@ def next(request):
         test = np.array([demand]).reshape((-1, 1))
         price = model.predict(test)
         price_round = round(price[0], 1)
-        price_list.append(price_round)
-    price_list.reverse()
+        price_list.append(demand)
 
 
     print(f'{state}: {price_list}')
