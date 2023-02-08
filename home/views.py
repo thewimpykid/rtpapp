@@ -48,7 +48,7 @@ def index(request):
     if int(current_time_hours) < 10:
             current_time_hours = f'0{current_time_hours}'
             time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-            past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-{int(int(current_time_days) - 3)}T{current_time_hours}'
     if int(current_time_days) < 10:
             current_time_dayss = current_time_days
             current_time_days = f'0{current_time_days}'
@@ -125,7 +125,7 @@ def past(request):
     if int(current_time_hours) < 10:
             current_time_hours = f'0{current_time_hours}'
             time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-            past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-{int(int(current_time_days) - 3)}T{current_time_hours}'
     if int(current_time_days) < 10:
             current_time_dayss = current_time_days
             current_time_days = f'0{current_time_days}'
@@ -186,7 +186,7 @@ def next(request):
     if int(current_time_hours) < 10:
             current_time_hours = f'0{current_time_hours}'
             time = f'{current_time_years}-{current_time_months}-{current_time_days}T{current_time_hours}'
-            past_time = f'{current_time_years}-{current_time_months}-{int(current_time_days - 3)}T{current_time_hours}'
+            past_time = f'{current_time_years}-{current_time_months}-{int(int(current_time_days) - 3)}T{current_time_hours}'
     if int(current_time_days) < 10:
             current_time_dayss = current_time_days
             current_time_days = f'0{current_time_days}'
